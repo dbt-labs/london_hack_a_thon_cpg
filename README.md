@@ -4,9 +4,18 @@ Order and product performance for a consumer packaged goods manufacturer.
 This is the most self-contained of the three tracks: one source table, two
 marts, one clear story.
 
-The full step-by-step walkthrough is
-[docs/attendee-guide-cpg.md](../../docs/attendee-guide-cpg.md). This file is the
-30-second orientation.
+This file is the 30-second orientation. The full step-by-step attendee
+walkthrough is distributed separately by the workshop facilitators.
+
+## Support and maintenance
+
+This project is provided as-is, without warranties or SLAs. It is workshop
+material, maintained on a best-effort basis by the dbt Labs sales engineering
+team.
+
+Bug reports and questions are welcome as GitHub issues, but there is no
+committed response time. For security reports, see [SECURITY.md](SECURITY.md).
+Nothing here implies contractual support from dbt Labs.
 
 ## The business question
 
@@ -19,7 +28,10 @@ supply it. Put together, they separate "nobody wanted it" from "we ran out."
 
 ## Quickstart
 
-1. Open this folder (`projects/cpg`) in dbt Studio.
+You will need your own Snowflake account and a dbt project pointed at this
+repository. No credentials are included here.
+
+1. Clone this repository, or connect it to a dbt project in dbt Studio.
 2. `dbt deps`
 3. `dbt seed`, which loads `cpg_records` — the raw feed a real deployment
    would land continuously via Openflow instead.
@@ -27,7 +39,8 @@ supply it. Put together, they separate "nobody wanted it" from "we ran out."
 5. `dbt build`, which is where the seeded bugs live. Fix them with dbt Wizard.
 
 Stuck? There's no schema to fall back to any more — the seed is the same for
-everyone. Re-fork the repo if you think you've broken something structural.
+everyone. Re-clone the repository if you think you've broken something
+structural.
 
 ## What is in here
 
