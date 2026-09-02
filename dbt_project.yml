@@ -1,0 +1,49 @@
+# ---------------------------------------------------------------------------
+# Consumer packaged goods track
+#
+# This is the ONLY file you need to edit to point the project at your own data.
+# Everything else in this project reads from the vars below.
+# ---------------------------------------------------------------------------
+
+name: 'hol_cpg'
+version: '1.0.0'
+profile: 'snowflake_hol'
+
+# Fusion-conformant: no config-version key, and a minimum version floor.
+require-dbt-version: [">=1.9.0"]
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+# dbt seed's default Snowflake load is unquoted (Snowflake-uppercased) names,
+# which is what quoting: false already matches. No per-attendee variation to
+# account for here, since every attendee seeds the same way.
+quoting:
+  database: false
+  schema: false
+  identifier: false
+
+vars:
+  # ---- TRACK IDENTITY (one obvious place per project) ---------------------
+  track_key: 'cpg'
+  track_name: 'Consumer packaged goods'
+  track_description: >
+    Order and product performance for a consumer packaged goods manufacturer:
+    order value, customer lifetime value, inventory health (stockout, overstock,
+    turnover), demand forecasting and price optimisation.
+
+models:
+  hol_cpg:
+    +materialized: view
+    staging:
+      +tags: ['staging']
+    intermediate:
+      +tags: ['intermediate']
+    marts:
+      +materialized: table
+      +tags: ['marts']
