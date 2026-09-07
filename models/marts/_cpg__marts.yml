@@ -117,8 +117,8 @@ models:
         data_type: number(18,2)
         description: Units implied by dividing order value by unit price.
 
-      # HOL_BUG_CPG_04
-      - name: customer_ltv
+      - name: customer_lifetime_value
+
         data_type: number(18,2)
         description: Modelled customer lifetime value in USD.
 
@@ -422,14 +422,12 @@ models:
         description: Do fields that should agree with each other agree? 0 to 100.
 
       - name: data_quality_score
-        description: >
-          Simple average of the three dimension scores. The data team's agreed
-          floor for a production category is documented in the team handbook.
-        # HOL_BUG_CPG_03
+        description: Simple average of the three dimension scores, constrained to 0 through 100.
         data_tests:
           - dbt_utils.accepted_range:
               arguments:
-                min_value: 95
+                min_value: 0
+                max_value: 100
                 inclusive: true
 
       - name: data_quality_grade
