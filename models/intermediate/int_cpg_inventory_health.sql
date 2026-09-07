@@ -19,7 +19,7 @@ with products as (
 coverage as (
 
     select
-        record_id,
+        record_id as record_id,
         product_id,
         product_category,
         product_subcategory,
