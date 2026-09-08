@@ -47,6 +47,7 @@ select
 
     -- ---- flags -----------------------------------------------------------------
     cast(is_price_optimized as boolean) as is_price_optimized,
-    cast(needs_planner_review as boolean) as needs_planner_review
+    cast(needs_planner_review as boolean) as needs_planner_review,
+    1 as new_col
 
 from inventory
